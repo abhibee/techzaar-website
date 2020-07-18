@@ -16,6 +16,8 @@ import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import headerLogo from "../../dummy_data/images/logos/logo-color-sq.png";
+//import footerLogo from ../../dummy_data/images/logos/logo-white.png
 
 const styles = theme => ({
   appBar: {
@@ -25,6 +27,10 @@ const styles = theme => ({
   toolbar: {
     display: "flex",
     justifyContent: "space-between"
+  },
+  logo: {
+           width: "46px",
+           height: "50px",
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
@@ -59,16 +65,6 @@ function NavBar(props) {
       link: "/blog",
       name: "Blog",
       icon: <BookIcon className="text-white" />
-    },
-    {
-      name: "Register",
-      onClick: openRegisterDialog,
-      icon: <HowToRegIcon className="text-white" />
-    },
-    {
-      name: "Login",
-      onClick: openLoginDialog,
-      icon: <LockOpenIcon className="text-white" />
     }
   ];
   return (
@@ -76,13 +72,14 @@ function NavBar(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div>
+          <img src={headerLogo} className={classes.logo} alt="Logo"/>
             <Typography
               variant="h4"
               className={classes.brandText}
               display="inline"
               color="primary"
             >
-              Wa
+              TECH
             </Typography>
             <Typography
               variant="h4"
@@ -90,8 +87,9 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              Ver
+              ZAAR
             </Typography>
+
           </div>
           <div>
             <Hidden mdUp>

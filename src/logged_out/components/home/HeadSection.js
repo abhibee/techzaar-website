@@ -10,9 +10,10 @@ import {
   Box,
   withStyles,
   withWidth,
-  isWidthUp
+  isWidthUp,
+  Paper
 } from "@material-ui/core";
-import headerImage from "../../dummy_data/images/headerImage.jpg";
+import headerImage from "../../dummy_data/images/body-header.png";
 import WaveBorder from "../../../shared/components/WaveBorder";
 
 const styles = theme => ({
@@ -72,8 +73,7 @@ const styles = theme => ({
   image: {
     maxWidth: "100%",
     verticalAlign: "middle",
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[4]
+    borderRadius: theme.shape.borderRadius
   },
   container: {
     marginTop: theme.spacing(6),
@@ -86,8 +86,15 @@ const styles = theme => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginBottom: theme.spacing(3)
-    }
+    },
+    justify:theme.center,
+    alignItems:theme.center
+
   },
+  item: {
+   "align-self": theme.center,
+   alignItems: theme.center
+   },
   containerFix: {
     [theme.breakpoints.up("md")]: {
       maxWidth: "none !important"
@@ -95,7 +102,7 @@ const styles = theme => ({
   },
   waveBorder: {
     paddingTop: theme.spacing(4)
-  }
+  },
 });
 
 function HeadSection(props) {
@@ -105,72 +112,37 @@ function HeadSection(props) {
       <div className={classNames("lg-p-top", classes.wrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="center" className="row">
-            <Card
-              className={classes.card}
-              data-aos-delay="200"
-              data-aos="zoom-in"
-            >
+            <Card className={classes.card} data-aos-delay="200" data-aos="zoom-in" >
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="space-between" className="row">
-                  <Grid item xs={12} md={5}>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      justifyContent="space-between"
-                      height="100%"
-                    >
-                      <Box mb={4}>
-                        <Typography
-                          variant={isWidthUp("lg", width) ? "h3" : "h4"}
-                        >
-                          Free Template for building an SaaS app using
-                          Material-UI
-                        </Typography>
-                      </Box>
-                      <div>
-                        <Box mb={2}>
-                          <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                            color="textSecondary"
-                          >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                  <Grid container lg={12} alignItems="center">
+                    <Grid item lg={6} alignItems="center">
+                    <div>
+                          <Typography variant={isWidthUp("lg", width) ? "h3" : "h4"} alignItems="center">
+                            Accelerate
+                            Your Innovation
+                            With Us
                           </Typography>
-                        </Box>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          fullWidth
-                          className={classes.extraLargeButton}
-                          classes={{ label: classes.extraLargeButtonLabel }}
-                          href="https://github.com/dunky11/react-saas-template"
-                        >
-                          Download from GitHub
-                        </Button>
-                      </div>
-                    </Box>
+                           <Typography variant={isWidthUp("lg", width) ? "h6" : "body1"} color="textSecondary" alignItems="center">
+                             Imagine | Believe | Achieve
+                           </Typography>
+                           </div>
+                     </Grid>
+                    <Grid item lg={6}>
+                       <Box>
+                        <Paper elevation={0}>
+                          <img src={headerImage} className={classes.image} alt="header example"/>
+                        </Paper>
+                       </Box>
+                     </Grid>
                   </Grid>
-                  <Hidden smDown>
-                    <Grid item md={6}>
-                      <img
-                        src={headerImage}
-                        className={classes.image}
-                        alt="header example"
-                      />
-                    </Grid>
-                  </Hidden>
                 </Box>
               </div>
             </Card>
           </Box>
         </div>
       </div>
-      <WaveBorder
-        upperColor={theme.palette.secondary.main}
-        lowerColor="#FFFFFF"
-        className={classes.waveBorder}
-        animationNegativeDelay={2}
-      />
+      <WaveBorder upperColor={theme.palette.secondary.main} lowerColor="#FFFFFF" className={classes.waveBorder} animationNegativeDelay={2} />
     </Fragment>
   );
 }
