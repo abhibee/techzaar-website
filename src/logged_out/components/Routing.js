@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
-import Blog from "./blog/Blog";
+import Blog from "./blog/Blog-medium";
 import BlogPost from "./blog/BlogPost";
 
 function Routing(props) {

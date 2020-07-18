@@ -16,6 +16,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
+import footerLogo from "../../dummy_data/images/logos/logo-white-with-tzr.png";
+
 
 const styles = theme => ({
   footerInner: {
@@ -37,6 +39,12 @@ const styles = theme => ({
       paddingBottom: theme.spacing(10)
     }
   },
+     logo: {
+              width: "180px",
+              height: "70px",
+              padding: "10px"
+     },
+
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400,
@@ -206,6 +214,7 @@ function Footer(props) {
             </Grid>
           </Hidden>
           <Grid item xs={12} md={6} lg={4}>
+          <img src={footerLogo} className={classes.logo} alt="Logo"/>
 
             <Box display="flex">
               {socialIcons.map((socialIcon, index) => (

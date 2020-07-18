@@ -16,8 +16,7 @@ import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
-import headerLogo from "../../dummy_data/images/logos/logo-color-sq.png";
-//import footerLogo from ../../dummy_data/images/logos/logo-white.png
+import headerLogo from "../../dummy_data/images/logos/logo-color-with-tzr.png";
 
 const styles = theme => ({
   appBar: {
@@ -29,8 +28,9 @@ const styles = theme => ({
     justifyContent: "space-between"
   },
   logo: {
-           width: "46px",
-           height: "50px",
+           width: "180px",
+           height: "70px",
+           padding: "10px"
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
@@ -73,22 +73,6 @@ function NavBar(props) {
         <Toolbar className={classes.toolbar}>
           <div>
           <img src={headerLogo} className={classes.logo} alt="Logo"/>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="primary"
-            >
-              TECH
-            </Typography>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="secondary"
-            >
-              ZAAR
-            </Typography>
 
           </div>
           <div>
