@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/techzaar-website/precache-manifest.928b39898243aa077543d4f070321027.js"
+  "/techzaar-website/precache-manifest.938b884a4996c5f2348a963a52d689fa.js"
 );
 
 self.addEventListener('message', (event) => {
