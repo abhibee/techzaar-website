@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
-import Blog from "./blog/Blog-medium";
+import Blog2 from "./blog/Blog2";
 import BlogPost from "./blog/BlogPost";
 
 function Routing(props) {
@@ -26,7 +26,7 @@ function Routing(props) {
       <PropsRoute
         exact
         path="/blog"
-        component={Blog}
+        component={Blog2}
         selectBlog={selectBlog}
         blogPosts={blogPosts}
       />

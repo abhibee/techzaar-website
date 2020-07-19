@@ -1,23 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {
-  Grid,
-  Typography,
-  Box,
-  IconButton,
-  Hidden,
-  withStyles,
-  withWidth,
-  isWidthUp,
-  TextField
-} from "@material-ui/core";
+import { Grid, Typography, Box, IconButton, Hidden, withStyles, withWidth, isWidthUp, TextField } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
 import footerLogo from "../../dummy_data/images/logos/logo-white-with-tzr.png";
-
+import * as emailjs from 'emailjs-com';
 
 const styles = theme => ({
   footerInner: {
@@ -44,7 +34,6 @@ const styles = theme => ({
               height: "70px",
               padding: "10px"
      },
-
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400,
@@ -113,13 +102,7 @@ const socialIcons = [
   },
   {
     icon: (
-      <svg
-        role="img"
-        width="24px"
-        height="24px"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg role="img" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
         <title>LinkedIn</title>
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
       </svg>
@@ -129,13 +112,7 @@ const socialIcons = [
   },
   {
     icon: (
-      <svg
-        role="img"
-        width="24px"
-        height="24px"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg role="img" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
         <title>Twitter</title>
         <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
       </svg>
@@ -145,39 +122,91 @@ const socialIcons = [
   }
 ];
 
+  var state = {
+    name: 'Techzaar Visitor',
+    email: 'noreply@techzaar.com',
+    subject: 'Website message',
+    message: '',
+    showingAlert: false
+  };
+
+var setState = (e) =>  {
+    const { name, email, subject, message, showingAlert } = e;
+    //alert(JSON. stringify(e));
+    //alert(message);
+    state.message=message;
+    state.showingAlert=showingAlert;
+    }
+
+var handleClickShowAlert=() => {
+//    alert(JSON.stringify(state));
+    setState({
+      showingAlert: true
+    });
+
+    setTimeout(() => {
+      setState({
+        showingAlert: false
+      });
+//    alert(JSON.stringify(state));
+    }, 5000);
+//    alert(JSON.stringify(state));
+      alert("We have received your message. Thank you!");
+
+  }
+
+var handleSubmit = (e) =>  {
+    //alert('submitting form')
+    e.preventDefault()
+    const { name, email, subject, message } = state
+    let templateParams = {
+      from_name: email,
+      to_name: 'abhishek@techzaar.com',
+      subject: subject,
+      message_html: message,
+     }
+     emailjs.send(
+      'gmail',
+      'template_UGMVD8fh',
+       templateParams,
+      'user_DwtzCPIfpMzq9Izac8EoU'
+     )
+     handleClickShowAlert();
+     resetForm();
+
+ }
+
+var resetForm = () =>  {
+    setState({
+      message: '',
+    })
+  }
+
+var handleChange = (param, e) => {
+    setState({ [param]: e.target.value })
+  }
+
 function Footer(props) {
   const { classes, theme, width } = props;
+  const [state] = useState('');
+
   return (
     <footer className="lg-p-top">
-      <WaveBorder
-        upperColor="#FFFFFF"
-        lowerColor={theme.palette.common.darkBlack}
-        animationNegativeDelay={4}
-      />
+      <WaveBorder upperColor="#FFFFFF" lowerColor={theme.palette.common.darkBlack} animationNegativeDelay={4} />
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>
-            <form>
+          <div className={state.showingAlert ? 'shown' : 'hidden'}>
+              <Typography variant="h6" className="text-white">
+              <strong>Message sent!</strong> Thank you for the message.
+              </Typography>
+            </div>
+            <form onSubmit={handleSubmit.bind(this)}>
               <Box display="flex" flexDirection="column">
                 <Box mb={1}>
-                  <TextField
-                    variant="outlined"
-                    multiline
-                    placeholder="Get in touch with us"
-                    inputProps={{ "aria-label": "Get in Touch" }}
-                    InputProps={{
-                      className: classes.whiteBg
-                    }}
-                    rows={4}
-                    fullWidth
-                    required
-                  />
+                  <TextField type="textarea" name="message"variant="outlined" multiline onChange={handleChange.bind(this, 'message')} placeholder="Get in touch with us. Please provide your email/phone to respond to as part of the message." inputProps={{ "aria-label": "Get in Touch" }} InputProps={{ className: classes.whiteBg }} rows={4} fullWidth required />
                 </Box>
-                <ColoredButton
-                  color={theme.palette.common.white}
-                  variant="outlined"
-                  type="submit"
-                >
+                <ColoredButton color={theme.palette.common.white} variant="outlined" type="submit" >
                   Send Message
                 </ColoredButton>
               </Box>
@@ -189,20 +218,11 @@ function Footer(props) {
                 <div>
                   {infos.map((info, index) => (
                     <Box display="flex" mb={1} key={index}>
-                      <Box mr={2}>
-                        <IconButton
-                          className={classes.infoIcon}
-                          tabIndex={-1}
-                          disabled
-                        >
+                      <Box mr={2}> <IconButton className={classes.infoIcon} tabIndex={-1} disabled >
                           {info.icon}
                         </IconButton>
                       </Box>
-                      <Box
-                        display="flex"
-                        flexDirection="column"
-                        justifyContent="center"
-                      >
+                      <Box display="flex" flexDirection="column" justifyContent="center" >
                         <Typography variant="h6" className="text-white">
                           {info.description}
                         </Typography>
@@ -219,11 +239,7 @@ function Footer(props) {
             <Box display="flex">
               {socialIcons.map((socialIcon, index) => (
                 <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
-                  <IconButton
-                    aria-label={socialIcon.label}
-                    className={classes.socialIcon}
-                    href={socialIcon.href}
-                  >
+                  <IconButton aria-label={socialIcon.label} className={classes.socialIcon} href={socialIcon.href} >
                     {socialIcon.icon}
                   </IconButton>
                 </Box>

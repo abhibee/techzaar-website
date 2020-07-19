@@ -9,6 +9,12 @@ const styles = theme => ({
     "*:focus": {
       outline: 0
     },
+    ".shown":{
+        display: "block"
+      },
+      ".hidden":{
+        display: "none"
+      },
     ".text-white": {
       color: theme.palette.common.white
     },
