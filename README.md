@@ -22,7 +22,7 @@ Your browser should now open and show the app. Otherwise, open http://localhost:
 
 
 
-####Links used :-
+##### Links used :-
 1. https://medium.com/@eesh.t/send-email-using-emailjs-and-react-form-9993bb6929d8
 2. https://medium.com/better-programming/how-to-host-your-react-app-on-github-pages-for-free-919ad201a4cb
 3. https://medium.com/datadriveninvestor/embedded-medium-as-a-blog-on-your-react-website-f01be289e151
