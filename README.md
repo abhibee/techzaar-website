@@ -4,7 +4,7 @@
 1. Clone the repository
 
    ```
-   git clone https://github.com/abhibee/techzaar-website.git
+   git clone https://github.com/abhishektzr/techzaar-website.git
    ```
 2. Install dependencies, this can take a minute
 
